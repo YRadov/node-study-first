@@ -2,16 +2,19 @@
  * Created by YRadov on 30.09.2016.
  */
 
+var exec = require("child_process").exec;
+
 function start() {
     console.log("Request handler 'start' was called.");
+    var content = "empty";
 
-    function sleep(milliSeconds) {
-        var startTime = new Date().getTime();
-        while (new Date().getTime() < startTime + milliSeconds);
-    }
+    exec("dir", function (error, stdout, stderr) {
+    //exec("find /", function (error, stdout, stderr) {
+    //exec("ls -lah", function (error, stdout, stderr) {
+        content = stdout;
+    });
 
-    sleep(10000);
-    return "Hello Start";
+    return content;
 }
 
 function upload() {
